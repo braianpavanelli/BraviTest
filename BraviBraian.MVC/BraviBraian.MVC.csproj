@@ -163,12 +163,85 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\now-ui-kit.css">
+      <DependentUpon>now-ui-kit.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\now-ui-kit.min.css">
+      <DependentUpon>now-ui-kit.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datepicker.es5.js">
+      <DependentUpon>bootstrap-datepicker.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap-datepicker.es5.min.js">
+      <DependentUpon>bootstrap-datepicker.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-switch.es5.js">
+      <DependentUpon>bootstrap-switch.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap-switch.es5.min.js">
+      <DependentUpon>bootstrap-switch.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap-switch.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\now-ui-kit.scss" />
+    <Content Include="Content\now-ui-kit\cards\_card-plain.scss" />
+    <Content Include="Content\now-ui-kit\cards\_card-signup.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_badges.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_buttons.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_cards.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_datepicker.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_dropdown.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_inputs.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_modals.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_navbar.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_pages.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_popovers.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_transparency.scss" />
+    <Content Include="Content\now-ui-kit\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\now-ui-kit\plugins\_plugin-bootstrap-switch.scss" />
+    <Content Include="Content\now-ui-kit\plugins\_plugin-datepicker.scss" />
+    <Content Include="Content\now-ui-kit\plugins\_plugin-nouislider.scss" />
+    <Content Include="Content\now-ui-kit\plugins\_plugin-perfect-scrollbar.scss" />
+    <Content Include="Content\now-ui-kit\_alerts.scss" />
+    <Content Include="Content\now-ui-kit\_badges.scss" />
+    <Content Include="Content\now-ui-kit\_buttons.scss" />
+    <Content Include="Content\now-ui-kit\_cards.scss" />
+    <Content Include="Content\now-ui-kit\_carousel.scss" />
+    <Content Include="Content\now-ui-kit\_checkboxes-radio.scss" />
+    <Content Include="Content\now-ui-kit\_dropdown.scss" />
+    <Content Include="Content\now-ui-kit\_example-pages.scss" />
+    <Content Include="Content\now-ui-kit\_footers.scss" />
+    <Content Include="Content\now-ui-kit\_images.scss" />
+    <Content Include="Content\now-ui-kit\_inputs.scss" />
+    <Content Include="Content\now-ui-kit\_misc.scss" />
+    <Content Include="Content\now-ui-kit\_mixins.scss" />
+    <Content Include="Content\now-ui-kit\_modals.scss" />
+    <Content Include="Content\now-ui-kit\_navbar.scss" />
+    <Content Include="Content\now-ui-kit\_nucleo-outline.scss" />
+    <Content Include="Content\now-ui-kit\_pagination.scss" />
+    <Content Include="Content\now-ui-kit\_pills.scss" />
+    <Content Include="Content\now-ui-kit\_popups.scss" />
+    <Content Include="Content\now-ui-kit\_progress.scss" />
+    <Content Include="Content\now-ui-kit\_responsive.scss" />
+    <Content Include="Content\now-ui-kit\_sections.scss" />
+    <Content Include="Content\now-ui-kit\_tabs.scss" />
+    <Content Include="Content\now-ui-kit\_typography.scss" />
+    <Content Include="Content\now-ui-kit\_variables.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="fonts\nucleo-license.md" />
+    <Content Include="fonts\nucleo-outline.eot" />
+    <Content Include="fonts\nucleo-outline.ttf" />
+    <Content Include="fonts\nucleo-outline.woff" />
+    <Content Include="fonts\nucleo-outline.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -180,6 +253,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\nouislider.min.js" />
+    <Content Include="Scripts\now-ui-kit.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

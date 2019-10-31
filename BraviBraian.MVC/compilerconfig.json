@@ -1,0 +1,12 @@
+[
+  {
+    "outputFile": "Content/now-ui-kit.css",
+    "inputFile": "Content/now-ui-kit.scss",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "Scripts/bootstrap-datepicker.es5.js",
+    "inputFile": "Scripts/bootstrap-datepicker.js",
+    "sourceMap": false
+  }
+]

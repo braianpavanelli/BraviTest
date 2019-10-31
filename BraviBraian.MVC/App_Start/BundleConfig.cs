@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace BraviBraian.MVC
 {
@@ -22,9 +21,16 @@ namespace BraviBraian.MVC
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/others").Include(
+                      "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/bootstrap-switch.js",
+                      "~/Scripts/nouislider.min.js",
+                      "~/Scripts/now-ui-kit.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      /*"~/Content/site.css"*/
+                      "~/Content/now-ui-kit.css"));
         }
     }
 }
