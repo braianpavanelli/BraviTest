@@ -1,0 +1,181 @@
+﻿@model IEnumerable<BraviBraian.MVC.ViewModels.ContactViewModel>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contact</h4>
+    <hr />
+    <div class="row">
+        <div class="form-group form-inline">
+            <div class="col-md-3">
+                <input type="text" id="namePerson" value="" class="form-control" readonly>
+                <a class="text-info " style="cursor: pointer;" alt="Click to Edit Contact Name" onclick="editName()">  <i class="now-ui-icons design-2_ruler-pencil form-control"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <dl class="dl-horizontal">
+            @foreach (var item in Model)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdContactType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.ContactType.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => item.Description)
+                </dd>
+            }
+
+        </dl>
+    </div>
+</div>
+<p>
+    @if (Model != null && Model.Count() > 0)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = ViewBag.Id })
+    }
+    else
+    {
+        <a style="cursor: pointer;" id="addContact">Add First Contact</a>
+    }
+    | @Html.ActionLink("Back to List", "Index", "People")
+</p>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = '@ViewBag.UriApi' + '/people/' + @ViewBag.Id;
+            console.log(url);
+            $.get(url, function (p) {
+                console.log(p);
+                $("#namePerson").val(p.Name);
+            })
+        });
+
+        function editName() {
+            var name = $("#namePerson").val();
+            Swal.fire({
+                title: 'Edit the name',
+                input: 'text',
+                inputValue: name,
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to write something!'
+                    }
+                },
+                preConfirm: (value) => {
+                    var id = '@ViewBag.Id';
+                    return fetch('@ViewBag.UriApi' + '/people', {
+                        method: 'PUT', body: JSON.stringify({ id: id, name: value }), headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (!(response.status >= 200 && response.status < 300)) {
+                                  throw new Error(response.statusText)
+                            }
+                            return JSON.stringify({ id: id, name: value })
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: 'Updated',
+                        type: 'success',
+                        text: 'The name of this contact was saved',
+                        onClose: () => {
+                            location.reload();
+                        }
+                    })
+                }
+            })
+        }
+
+        $("#addContact").on("click",
+            function addContact() {
+                var id = @ViewBag.Id;
+                Swal.mixin({
+                    confirmButtonText: 'Next &rarr;',
+                    showCancelButton: true,
+                    progressSteps: ['1', '2']
+                }).queue([
+                    {
+                        input: 'select',
+                        title: 'Contact Type',
+
+                        inputOptions: {
+                            '1': 'Phone',
+                            '2': 'Email',
+                            '3': 'WhatsApp'
+                        },
+                        inputPlaceholder: 'Select',
+                        inputValidator: (value) => {
+                            if (!value) {
+                                return 'You have to select a type'
+                            }
+                        }
+                    }, {
+                        title: 'Value',
+                        input: 'text',
+                        inputClass: 'swal2-overflow datetimepicker',
+                        inputValidator: (value) => {
+                            if (!value) {
+                                return 'A value for a contact is required'
+                            }
+                        },
+
+                    },]).then((result) => {
+                        values = {
+                            idPerson: id,
+                            idContactType: result.value[0],
+                            description: result.value[1],
+                        }
+                        jsonObj = $.parseJSON(JSON.stringify(values));
+                        var resposta;
+                        $.post('@ViewBag.UriApi' + '/contact', jsonObj, function (response) {
+                            resposta = response;
+                        }).done(
+                            function () {
+                                var url = '@Url.Action("Edit", "Contact", new { id = ViewBag.Id })';
+                                console.log(url);
+                                Swal.fire({
+                                    title: "Added!",
+                                    text: resposta,
+                                    type: 'success',
+                                    onClose: () => {
+                                        location.replace(url);
+                                    }
+                                })
+                            }).fail(function () {
+                                Swal.fire({
+                                    title: "Sorry we got an error!",
+                                    text: "Maybe the API is not Working",
+                                    type: 'error',
+                                })
+                            });
+                    })
+            });
+    </script>
+}

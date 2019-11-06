@@ -25,12 +25,14 @@ namespace BraviBraian.MVC
                       "~/Scripts/bootstrap-datepicker.js",
                       "~/Scripts/bootstrap-switch.js",
                       "~/Scripts/nouislider.min.js",
-                      "~/Scripts/now-ui-kit.js"));
+                      "~/Scripts/now-ui-kit.js",
+                      "~/Scripts/sweetalert2.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       /*"~/Content/site.css"*/
-                      "~/Content/now-ui-kit.css"));
+                      "~/Content/now-ui-kit.css",
+                      "~/Content/sweetalert2.min.css"));
         }
     }
 }

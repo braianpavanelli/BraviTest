@@ -1,0 +1,124 @@
+﻿@model IEnumerable<BraviBraian.MVC.ViewModels.PersonViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a onclick="editName('@item.Id', '@item.Name')" style="cursor: pointer;">Edit</a> |
+                @Html.ActionLink("Details", "Details", "Contact", new { id = item.Id }, null) |
+                <a onclick="deletePerson('@item.Id')" style="cursor: pointer;">Delete</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        function deletePerson(idValue) {
+            var json = { id: idValue };
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+            url: '@ViewBag.UriApi' + '/people',
+            type: 'DELETE',
+            data: JSON.stringify(json),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (e) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                ),
+                location.reload();
+            }
+        });
+                }
+            })
+
+
+        };
+
+        function editName(id, name) {
+            Swal.fire({
+                title: 'Edit the name',
+                input: 'text',
+                inputValue: name,
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to write something!'
+                    }
+                },
+                preConfirm: (value) => {
+                    return fetch('@ViewBag.UriApi' + '/people', {
+                        method: 'PUT', body: JSON.stringify({ id: id, name: value }), headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (!(response.status >= 200 && response.status < 300)) {
+                                console.log("Entrei no IF")
+                                throw new Error(response.statusText)
+                            }
+                            return JSON.stringify({ id: id, name: value })
+                        })
+                        .catch(error => {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: 'Updated',
+                        type: 'success',
+                        text: 'The name of this contact was saved',
+                        onClose: () => {
+                            location.reload();
+                        }
+                    })
+                }
+            })
+        }
+    </script>
+}

@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Balanced Brackets</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Brackets Validator</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group has-danger">
+        @Html.Label("Brackets Input", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+
+            @Html.TextBox("txtValidator", null, new { @class = "form-control form-control-danger", @ID = "txtValidator" })
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div id="invalid" class="h3 text-danger"><i class="now-ui-icons ui-1_simple-remove"> This string is invalid!</i></div>
+            <div id="valid" class="h3 text-success hidden"><i class="now-ui-icons ui-1_check"> This string is valid!</i></div>
+        </div>
+        <div class="col-md-4"></div>
+
+    </div>
+
+</div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+
+        var txt = $("#txtValidator");
+        txt.keyup(function () {
+            if (isValidString(txt.val())) {
+                $(".form-group").removeClass("has-danger");
+                txt.removeClass("form-control-danger");
+                $(".form-group").addClass("has-success");
+                txt.addClass("form-control-success");
+                $("#valid").removeClass("hidden");
+                $("#invalid").addClass("hidden");
+            }
+            else {
+                $(".form-group").removeClass("has-success");
+                txt.removeClass("form-control-success");
+                $(".form-group").addClass("has-danger");
+                txt.addClass("form-control-danger");
+                $("#invalid").removeClass("hidden");
+                $("#valid").addClass("hidden");
+            }
+        })
+
+        function isValidString(str) {
+            var strArr = str.split('');
+            var matches = { '}': '{', ']': '[', ')': '(' };
+            var stack = new Array();
+
+            for (var i = 0; i < strArr.length; i++) {
+                var char = strArr[i];
+
+                if (Object.values(matches).includes(char)) {
+                    stack.push(char);
+                } else if (Object.keys(matches).includes(char)) {
+                    if (stack[stack.length - 1] !== matches[char]) {
+                        return false;
+                    } else {
+                        stack.pop(char);
+                    }
+                }
+            }
+            return !stack.length;
+        }
+
+    </script>
+}
