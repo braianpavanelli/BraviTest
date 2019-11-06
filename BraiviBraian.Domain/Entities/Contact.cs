@@ -8,7 +8,7 @@
 
         public int IdContactType { get; set; }
 
-        public ContactType ContactType { get; set; }
+        public virtual ContactType ContactType { get; set; }
 
         public int IdPerson { get; set; }
 

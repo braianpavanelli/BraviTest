@@ -48,7 +48,15 @@
     <Compile Include="Interfaces\Repositories\IContactRepository.cs" />
     <Compile Include="Interfaces\Repositories\IContactTypeRepository.cs" />
     <Compile Include="Interfaces\Repositories\IPersonRepository.cs" />
+    <Compile Include="Interfaces\Services\IBaseService.cs" />
+    <Compile Include="Interfaces\Services\IContactService.cs" />
+    <Compile Include="Interfaces\Services\IContactTypeService.cs" />
+    <Compile Include="Interfaces\Services\IPersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\ContactTypeService.cs" />
+    <Compile Include="Services\PersonService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
