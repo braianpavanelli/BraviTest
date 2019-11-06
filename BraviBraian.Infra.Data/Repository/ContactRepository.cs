@@ -9,7 +9,7 @@ namespace BraviBraian.Infra.Data.Repository
     {
         public ICollection<Contact> GetListByDescription(string description)
         {
-            return Db.Contacts.Where(u => u.Description.Contains(description)).ToList();
+            return Db.Contacts.Where(u => u.Description.ToLower().Contains(description.ToLower())).ToList();
         }
 
         public ICollection<Contact> GetListByPerson(int idPerson)
