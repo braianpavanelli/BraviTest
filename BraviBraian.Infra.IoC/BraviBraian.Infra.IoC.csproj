@@ -58,6 +58,10 @@
       <Project>{5aa63c46-e149-42c3-b9d3-c25189b003fe}</Project>
       <Name>BraviBraian.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BraviBraian.Application\BraviBraian.Application.csproj">
+      <Project>{5d83cbeb-7c53-4d84-aa35-ea1e6f7b9029}</Project>
+      <Name>BraviBraian.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BraviBraian.Infra.Data\BraviBraian.Infra.Data.csproj">
       <Project>{640e869c-ddc8-4045-9248-d6474c127d1f}</Project>
       <Name>BraviBraian.Infra.Data</Name>
