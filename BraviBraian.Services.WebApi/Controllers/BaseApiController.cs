@@ -9,7 +9,7 @@ using System.Web.Http.Cors;
 
 namespace BraviBraian.Services.WebApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:63400/", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BaseApiController : ApiController
     {
     }
