@@ -60,16 +60,23 @@ namespace BraviBraian.Services.WebApi.Controllers
         }
 
         // PUT: api/Contact/5
-        public void Put(int id, [FromBody]Contact obj)
+        [HttpPut]
+        public void PutByApi(int idContact, [FromBody]Contact obj)
         {
             contactAppService.UpdateByApi(obj);
         }
 
         // PUT: api/Contact/5
-        public void Put([FromBody]Contact[] objArray)
+        public void Put([FromBody]Contact obj)
         {
-            contactAppService.UpdateCollection(objArray);
+            contactAppService.UpdateByApi(obj);
         }
+
+        // PUT: api/Contact/5
+        //public void Put([FromBody]Contact[] objArray)
+        //{
+        //    contactAppService.UpdateCollection(objArray);
+        //}
 
         // DELETE: api/Contact/5
         public void Delete([FromBody]Contact obj)

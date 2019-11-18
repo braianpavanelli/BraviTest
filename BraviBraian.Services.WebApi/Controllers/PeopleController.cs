@@ -57,5 +57,11 @@ namespace BraviBraian.Services.WebApi.Controllers
             personAppService.Delete(obj.Id);
         }
 
+        [HttpDelete]
+        public void Delete(int id, [FromBody]Person obj)
+        {
+            personAppService.Delete(id);
+        }
+
     }
 }
